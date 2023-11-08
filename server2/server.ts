@@ -6,9 +6,30 @@ import bodyParser from 'body-parser';
 
 
 
-
+const cors = require('cors')
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(cors())
+
+// app.use(function (req, res, next) {
+//
+//     // Website you wish to allow to connect
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//
+//     // Request methods you wish to allow
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//
+//     // Request headers you wish to allow
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//
+//     // Set to true if you need the website to include cookies in the requests sent
+//     // to the API (e.g. in case you use sessions)
+//     // res.setHeader('Access-Control-Allow-Credentials', true);
+//
+//     // Pass to next layer of middleware
+//     next();
+// });
 
 
 // Use body-parser middleware to parse JSON bodies
@@ -47,7 +68,7 @@ function authenticateToken(req: RequestWithUser, res: Response, next: NextFuncti
 }
 
 // POST /login route to authenticate a user and send back a token
-app.post('/loginf', (req: Request, res: Response) => {
+app.post('/login', (req: Request, res: Response) => {
     const { username, password } = req.body;
 
     const user = users.find(u => u.username === username && u.password === password);

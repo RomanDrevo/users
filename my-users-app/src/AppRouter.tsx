@@ -7,8 +7,9 @@ import Users from './components/Users';
 
 const AppRouter: React.FC = () => {
     const isLoggedIn = () => {
-        // TODO: Implement authentication logic and store login status
-        return false;
+        const token = localStorage.getItem('token');
+        // console.log(token);
+        return token;
     };
 
     return (
